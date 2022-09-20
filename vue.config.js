@@ -18,7 +18,8 @@ module.exports = defineConfig({
         pathRewrite: {
           ["^" + process.env.VUE_APP_BASE_API]: ''
         }
-      }
+      },
+
       // "/dev-api": {
       //   target: "http://localhost:3000",
       //   changeOrigin: true,
