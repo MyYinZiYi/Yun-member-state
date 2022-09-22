@@ -54,7 +54,8 @@ export default {
         const response = await login(this.LoginForm);
         this.$store.dispatch("DIS_SET_TOKEN", response.token);
         const userInfo = await getUserInfo();
-        console.log("userInfo=>",userInfo);
+        this.$store.dispatch("DIS_SET_USER_INFO",userInfo)
+        this.$router.push("/")
       } catch (e) {
         console.log(e.message);
       }
