@@ -13,6 +13,7 @@ const routes = [
   {
     path: '/',
     name: 'Layout',
+    redirect:"/index",
     component: () => import("../layout/Layout.vue"),
     children:[
       {
