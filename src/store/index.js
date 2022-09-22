@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { login, userInfo }from "../API/user.js"
-import { setToken, getToken, setUserInfo, getUserInfo } from "../request/auth"
+import { login, userInfo, logout } from "../API/user.js"
+import { setToken, getToken, setUserInfo, getUserInfo, removeTokenAndUserInfo } from "../request/auth"
 
 Vue.use(Vuex)
 
@@ -15,7 +15,6 @@ export default new Vuex.Store({
       return state.token
     },
     userInfo(state) {
-      console.log("---",state.userInfo)
       return state.userInfo
     }
   },
@@ -47,13 +46,13 @@ export default new Vuex.Store({
       } catch (e) {
         console.log(e.message);
       }
+    },
+    async handleLogout({ commit }) {
+      const response = await logout()
+      commit("SET_TOKEN","")
+      commit("SET_USER_INFO","")
+      return response
     }
-    // DIS_SET_TOKEN({ commit }, token) {
-    //   commit("SET_TOKEN", token)
-    // },
-    // DIS_SET_USER_INFO({ commit }, userInfo) {
-    //   commit("SET_USER_INFO", userInfo)
-    // }
   },
   modules: {
   }

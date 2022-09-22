@@ -15,9 +15,9 @@ export const userInfo = () => {
     })
 }
 
-// export const userInfo = () => {
-//     return request({
-//         url: '/admin/getUserinfo',
-//         method: "GET",
-//     })
-// }
+export const logout = () => {
+    return request({
+        url: '/admin/logout',
+        method: "POST",
+    })
+}

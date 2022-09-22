@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-menu
-      :default-active="activePath"
+      default-active="activePath"
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b"
@@ -33,7 +33,7 @@
 <script>
 export default {
   name: "AppAside",
-  created: {
+  computed: {
     activePath() {
       return this.$router.path;
     },

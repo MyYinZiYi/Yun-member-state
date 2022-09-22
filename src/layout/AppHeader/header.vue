@@ -38,8 +38,13 @@ export default {
     handleChangePass() {
       olert("修改密码");
     },
-    handleLogout() {
-      olert("退出登录");
+    async handleLogout() {
+      try {
+        const response = await this.$store.dispatch("handleLogout");
+        this.$router.push("login");
+      } catch (e) {
+        console.log(e.message);
+      }
     },
   },
 };

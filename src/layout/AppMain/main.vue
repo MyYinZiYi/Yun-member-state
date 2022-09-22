@@ -9,7 +9,7 @@ import AppLink from "./Link.vue";
 export default {
   name: "AppMain",
   components: {
-    AppLink,
+    AppLink
   },
   computed: {
     controllLink() {
