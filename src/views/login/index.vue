@@ -17,7 +17,7 @@
   </div>
 </template>
 <script>
-import { login, getUserInfo } from "../../API/user";
+
 
 export default {
   data() {
@@ -50,16 +50,24 @@ export default {
       });
     },
     async handleLogin() {
-      try {
-        const response = await login(this.LoginForm);
-        this.$store.dispatch("DIS_SET_TOKEN", response.token);
-        const userInfo = await getUserInfo();
-        this.$store.dispatch("DIS_SET_USER_INFO",userInfo)
-        this.$router.push("/")
-      } catch (e) {
-        console.log(e.message);
-      }
+      const token = await this.$store.dispatch("login", this.LoginForm)
+      if(!token) return
+      const userInfo =await this.$store.dispatch("handleUserInfo")
+      if(!userInfo) return
+      this.$message.success("登录成功")
+      this.$router.push("/")
     },
+    // async handleLogin() {
+    // try {
+    //   const response = await login(this.LoginForm);
+    //   this.$store.dispatch("DIS_SET_TOKEN", response.token);
+    //   const userInfo = await getUserInfo();
+    //   this.$store.dispatch("DIS_SET_USER_INFO",userInfo)
+    //   this.$router.push("/")
+    // } catch (e) {
+    //   console.log(e.message);
+    // }
+    // },
   },
 };
 </script>
