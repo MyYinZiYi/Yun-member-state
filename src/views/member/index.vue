@@ -1,19 +1,19 @@
 <template>
   <div class="mt-2">
-    <el-form :inline="true" :model="memberQueryParams" class="demo-form-inline">
-      <el-form-item>
+    <el-form :inline="true" :model="memberQueryParams" ref="memberQueryForm">
+      <el-form-item prop="cardNum">
         <el-input
           v-model="memberQueryParams.cardNum"
           placeholder="会员卡号"
         ></el-input>
       </el-form-item>
-      <el-form-item>
+      <el-form-item prop="name">
         <el-input
           v-model="memberQueryParams.name"
           placeholder="会员姓名"
         ></el-input>
       </el-form-item>
-      <el-form-item>
+      <el-form-item prop="payType">
         <el-select v-model="memberQueryParams.payType" placeholder="支付类型">
           <el-option
             v-for="(item, index) in payType"
@@ -23,7 +23,7 @@
           ></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item>
+      <el-form-item prop="birthday">
         <el-date-picker
           v-model="memberQueryParams.birthday"
           type="date"
@@ -35,7 +35,7 @@
       <el-form-item>
         <el-button type="primary" @click="handleQueryMember">查询</el-button>
         <el-button type="primary">新增</el-button>
-        <el-button>重置</el-button>
+        <el-button @click="handleReset('memberQueryForm')">重置</el-button>
       </el-form-item>
     </el-form>
     <el-table :data="memberList" height="380" border style="width: 100%">
@@ -118,19 +118,26 @@ export default {
       this.total = total;
       this.memberList = rows;
     },
+    // 实现条数
     handleSizeChange(size) {
       this.size = size;
       this.getMemberList();
     },
+    // 实现页码
     handleCurrentChange(page) {
       this.page = page;
       this.getMemberList();
     },
+    // 查询功能
     handleQueryMember() {
-      console.log(this.memberQueryParams);
       this.page = 1;
-      this.getMemberList()
+      this.getMemberList();
     },
+    // 表单重置
+    handleReset(formName) {
+      this.$refs[formName].resetFields();
+    },
+    //
   },
 };
 </script>
