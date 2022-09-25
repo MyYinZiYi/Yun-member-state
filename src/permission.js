@@ -2,8 +2,6 @@ import router from "./router";
 
 import store from "./store"
 
-// import { removeTokenAndUserInfo } from "./request/auth"
-
 router.beforeEach(async (to, from, next) => {
     const token = store.getters.token
     if (token) {
@@ -17,9 +15,6 @@ router.beforeEach(async (to, from, next) => {
                 if (response) {
                     next()
                 } else {
-                    // store.commit("SET_TOKEN", "")
-                    // store.commit("SET_USER_INFO", "")
-                    // removeTokenAndUserInfo()
                     next("/login")
                 }
             } else {

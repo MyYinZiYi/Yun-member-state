@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-link></app-link>
+    <app-link v-if="controllLink"></app-link>
     <router-view></router-view>
   </div>
 </template>
@@ -9,15 +9,14 @@ import AppLink from "./Link.vue";
 export default {
   name: "AppMain",
   components: {
-    AppLink
+    AppLink,
   },
   computed: {
     controllLink() {
-      return !this.$router.path === "/index";
+      return !(this.$route.path === "/index");
     },
   },
 };
 </script>
 <style scoped>
-
 </style>
