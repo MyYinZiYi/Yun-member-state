@@ -41,4 +41,7 @@ export default {
 };
 </script>
 <style scoped>
+.el-menu {
+  border-right: none;
+}
 </style>

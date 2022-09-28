@@ -1,5 +1,5 @@
 <template>
-  <div class="mt_2">
+  <div class="mt-2">
     <el-form
       :inline="true"
       ref="queryForm"
@@ -31,7 +31,7 @@
       </el-form-item>
     </el-form>
 
-    <el-table :data="goodsList" border style="width: 100%" height="700">
+    <el-table :data="goodsList" border style="width: 100%" height="380">
       <el-table-column type="index" label="序号" width="50"></el-table-column>
       <el-table-column prop="name" label="商品名称"></el-table-column>
       <el-table-column prop="code" label="商品编码"></el-table-column>
@@ -180,13 +180,13 @@ export default {
     //获取商品列表的数据
     async getGoodsList() {
       try {
-        const response = await GoodsApi.goodsList(
+        const { rows, count } = await GoodsApi.goodsList(
           this.currentPage,
           this.pageSize,
           this.goodsQueryParams
         );
-        this.goodsList = response.rows;
-        this.total = response.total;
+        this.goodsList = rows;
+        this.total = count;
       } catch (error) {
         console.log(error.message);
       }
@@ -299,4 +299,5 @@ export default {
   },
 };
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+</style>

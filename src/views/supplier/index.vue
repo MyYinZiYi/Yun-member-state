@@ -1,5 +1,5 @@
 <template>
-  <div class="mt_2">
+  <div class="mt-2">
     <el-form
       :inline="true"
       ref="queryForm"
@@ -31,7 +31,7 @@
       </el-form-item>
     </el-form>
 
-    <el-table :data="SupplierList" border style="width: 100%" height="700">
+    <el-table :data="SupplierList" border style="width: 100%" height="380">
       <el-table-column type="index" label="序号" width="50"></el-table-column>
       <el-table-column prop="name" label="供应商名称"></el-table-column>
       <el-table-column prop="linkman" label="联系人"></el-table-column>
@@ -153,13 +153,13 @@ export default {
     //获取供应商列表的数据
     async getSupplierList() {
       try {
-        const response = await SupplierApi.supplierList(
+        const { rows, count } = await SupplierApi.supplierList(
           this.currentPage,
           this.pageSize,
           this.supplierQueryParams
         );
-        this.SupplierList = response.rows;
-        this.total = response.total;
+        this.SupplierList = rows;
+        this.total = count;
       } catch (error) {
         console.log(error.message);
       }

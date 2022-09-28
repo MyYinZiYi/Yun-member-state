@@ -229,12 +229,12 @@ export default {
      * @returns {Promise<void>}
      */
     async getMemberList() {
-      const { rows, total } = await MemberApi.getMemberList(
+      const { rows, count } = await MemberApi.getMemberList(
         this.page,
         this.size,
         this.memberQueryParams
       );
-      this.total = total;
+      this.total = count;
       this.memberList = rows;
     },
     /**
